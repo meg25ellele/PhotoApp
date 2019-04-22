@@ -14,6 +14,9 @@ import kotlinx.android.synthetic.main.activity_add_photo.*
 import java.text.SimpleDateFormat
 import java.util.*
 import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.image_adapter.view.*
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
@@ -21,12 +24,7 @@ import java.net.URL
 
 class AddPhoto : AppCompatActivity() {
 
-    companion object {
-        var tagString:String = ""
 
-
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,27 +51,8 @@ class AddPhoto : AppCompatActivity() {
             val date = SimpleDateFormat("dd/MM/yyyy hh:mm:ss", Locale.US)
             val dateInString = date.format(Date())
 
-            processImageTagging(getBitmapFromURL(url))
 
-            MainActivity.dataset.add(Photo(url,name, tagString,dateInString))
-
-            /*remembered = getSharedPreferences("gallery", 0)
-            var photoIndex = remembered!!.getInt(SAVED_NUMBER, 1)
-            val editor = remembered?.edit()
-
-            val date = SimpleDateFormat("dd/MM/yyyy hh:mm:ss", Locale.US)
-            val dateInString = date.format(Date())
-
-
-            photoIndex++
-
-            editor?.putString(DATE_key + photoIndex, dateInString)
-            editor?.putString(NAME_key + photoIndex.toString(),name)
-            editor?.putString(URL_key + photoIndex.toString(),url)
-
-
-
-            editor?.apply()*/
+            MainActivity.dataset.add(Photo(url,name," ",dateInString))
 
             startActivity(intent)
 
@@ -83,34 +62,5 @@ class AddPhoto : AppCompatActivity() {
 
 
     }
-
-    private fun processImageTagging(bitmap: Bitmap) {
-        val visionImg = FirebaseVisionImage.fromBitmap(bitmap)
-        val labeler = FirebaseVision.getInstance().cloudImageLabeler
-        labeler.processImage(visionImg)
-            .addOnSuccessListener { tags ->
-              tagString = tags.joinToString(" ") { it.text }
-            }
-            .addOnFailureListener { ex ->
-                Log.wtf("LAB", ex)
-            }
-    }
-
-    fun getBitmapFromURL(imgUrl: String): Bitmap {
-
-            val url = URL(imgUrl)
-            val connection = url.openConnection() as HttpURLConnection
-            connection.setDoInput(true)
-            connection.connect()
-            val input = connection.getInputStream()
-            return BitmapFactory.decodeStream(input)
-
-
-    }
-
-
-
-
-
 
 }

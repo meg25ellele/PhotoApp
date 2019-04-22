@@ -30,8 +30,8 @@ import java.net.URL
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        private val PICK_PHOTO: Int = 667
-        var dataset = mutableListOf(Photo("https://www.thebeaverton.com/wp-content/uploads/2019/03/cat-800x600.jpg","cat","cat, pet, animal","20/04/2019 06:06:30"))
+
+        var dataset = mutableListOf<Photo>()
         private lateinit var viewAdapter: RecyclerView.Adapter<*>
         private lateinit var deleteIcon: Drawable
         private var swipeBackground: ColorDrawable = ColorDrawable(Color.parseColor("#FF0000"))
@@ -49,6 +49,9 @@ class MainActivity : AppCompatActivity() {
 
         photo_recyclerView.layoutManager=LinearLayoutManager(this)
         photo_recyclerView.adapter= viewAdapter
+
+
+        photo_recyclerView.itemAnimator = null
 
         val itemTouchHelperCallback = object :ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
