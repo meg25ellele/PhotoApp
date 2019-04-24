@@ -52,7 +52,7 @@ class AddPhoto : AppCompatActivity() {
             val dateInString = date.format(Date())
 
 
-            MainActivity.dataset.add(Photo(url,name," ",dateInString))
+            MainActivity.dataset.add(Photo(url,name, emptyList(),dateInString))
 
             startActivity(intent)
 

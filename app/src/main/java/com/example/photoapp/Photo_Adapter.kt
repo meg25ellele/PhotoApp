@@ -53,7 +53,8 @@ class Photo_Adapter (private val dataset: MutableList<Photo>): RecyclerView.Adap
         })
 
 
-        holder.view.tags.text = dataset[position].tags
+
+        holder.view.tags.text = getTags(dataset[position].tags)
         holder.view.name.text = dataset[position].name
         holder.view.date.text = dataset[position].date
 
@@ -69,7 +70,8 @@ class Photo_Adapter (private val dataset: MutableList<Photo>): RecyclerView.Adap
         val labeler = FirebaseVision.getInstance().onDeviceImageLabeler
         labeler.processImage(visionImg)
             .addOnSuccessListener { tags ->
-                dataset[position].tags= tags.joinToString(" ") { it.text }
+                val stringTags= tags.joinToString(" ") { it.text }
+                dataset[position].tags = stringTags.split(" ")
                 notifyItemChanged(position,null)
 
             }
@@ -77,6 +79,15 @@ class Photo_Adapter (private val dataset: MutableList<Photo>): RecyclerView.Adap
                 Log.wtf("LAB", ex)
             }
     }
+
+    private fun getTags(listTags: List <String>):String{
+
+        return listTags.take(3).joinToString()
+
+
+
+    }
+
 
 }
 
