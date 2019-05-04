@@ -1,5 +1,7 @@
 package com.example.photoapp
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.util.Log
@@ -8,17 +10,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.photoapp.logic.Photo
-import com.google.android.gms.common.data.DataHolder
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_add_photo.view.*
-import kotlinx.android.synthetic.main.image_adapter.view.*
-import androidx.recyclerview.widget.SimpleItemAnimator
+import kotlinx.android.synthetic.main.photo_adapter.view.*
+import com.example.photoapp.fragments.ImageDetailAcitvity
 
 
+class Photo_Adapter (val context: Context, private val dataset: MutableList<Photo>): RecyclerView.Adapter<CustomViewHolder>(){
 
-class Photo_Adapter (private val dataset: MutableList<Photo>): RecyclerView.Adapter<CustomViewHolder>(){
 
 
     override fun getItemCount(): Int {
@@ -29,7 +29,7 @@ class Photo_Adapter (private val dataset: MutableList<Photo>): RecyclerView.Adap
 
 
         val layoutInflater= LayoutInflater.from(parent.context)
-        val cellForRow  = layoutInflater.inflate(R.layout.image_adapter,parent,false)
+        val cellForRow  = layoutInflater.inflate(R.layout.photo_adapter,parent,false)
         return CustomViewHolder(cellForRow)
     }
 
@@ -42,7 +42,6 @@ class Photo_Adapter (private val dataset: MutableList<Photo>): RecyclerView.Adap
                 processImageTagging(bitmap,position)
                 holder.view.photo.setImageBitmap(bitmap)
 
-
             }
 
             override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
@@ -54,9 +53,17 @@ class Photo_Adapter (private val dataset: MutableList<Photo>): RecyclerView.Adap
 
 
 
-        holder.view.tags.text = getTags(dataset[position].tags)
+        holder.view.photo.setOnClickListener{
+            run {
+                val intent = Intent(context, ImageDetailAcitvity::class.java)
+                intent.putExtra(ImageDetailAcitvity.IMAGE,dataset[position])
+                context.startActivity(intent)
+            }
+        }
+
         holder.view.name.text = dataset[position].name
         holder.view.date.text = dataset[position].date
+        holder.view.tags.text = dataset[position].getTags(dataset[position].tags)
 
     }
 
@@ -72,21 +79,14 @@ class Photo_Adapter (private val dataset: MutableList<Photo>): RecyclerView.Adap
             .addOnSuccessListener { tags ->
                 val stringTags= tags.joinToString(" ") { it.text }
                 dataset[position].tags = stringTags.split(" ")
-                notifyItemChanged(position,null)
-
+                    notifyItemChanged(position)
             }
             .addOnFailureListener { ex ->
                 Log.wtf("LAB", ex)
             }
     }
 
-    private fun getTags(listTags: List <String>):String{
 
-        return listTags.take(3).joinToString()
-
-
-
-    }
 
 
 }

@@ -16,7 +16,7 @@ import java.util.*
 import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.image_adapter.view.*
+import kotlinx.android.synthetic.main.photo_adapter.view.*
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL

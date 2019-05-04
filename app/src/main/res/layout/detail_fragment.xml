@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.DetailFragment">
+
+    <TextView
+            android:text="Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/detail_name" android:textSize="24sp"
+            android:textStyle="bold" android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.05"
+            android:layout_marginTop="30dp" app:layout_constraintTop_toBottomOf="@+id/detail_head"/>
+    <TextView
+            android:text="DETAILS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="30sp" android:textAlignment="center" android:layout_marginTop="100dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/colorAccent"
+            android:id="@+id/detail_head"
+    />
+    <TextView
+            android:text="tags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/detail_tags" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginTop="30dp" app:layout_constraintTop_toBottomOf="@+id/detail_name"
+            app:layout_constraintHorizontal_bias="0.05"/>
+    <TextView
+            android:text="Data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/detail_data"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toEndOf="@+id/detail_tags" android:layout_marginStart="8dp"
+            app:layout_constraintHorizontal_bias="0.8" android:layout_marginTop="90dp"
+            app:layout_constraintTop_toBottomOf="@+id/detail_head"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

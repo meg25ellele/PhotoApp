@@ -24,7 +24,7 @@ import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.image_adapter.*
+import kotlinx.android.synthetic.main.photo_adapter.*
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
 
         deleteIcon= ContextCompat.getDrawable(this,R.drawable.ic_delete)!!
-        viewAdapter = Photo_Adapter(dataset)
+        viewAdapter = Photo_Adapter(this@MainActivity,dataset)
 
         photo_recyclerView.layoutManager=LinearLayoutManager(this)
         photo_recyclerView.adapter= viewAdapter
@@ -94,7 +94,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, position: Int) {
+
                 (viewAdapter as Photo_Adapter).removeItem(viewHolder)
+
             }
 
         }
@@ -111,7 +113,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here.
-        val intent = Intent(this,AddPhoto::class.java)
+        val intent = Intent(this@MainActivity,AddPhoto::class.java)
         startActivity(intent)
 
         return super.onOptionsItemSelected(item)
