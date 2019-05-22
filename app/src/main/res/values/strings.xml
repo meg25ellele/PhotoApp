@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">PhotoApp</string>
     <string name="no_data">No data!</string>
+    <string name="name_view">Name:</string>
+    <string name="ulr_view">URL:</string>
+    <string name="add_button">Add Photo</string>
+    <string name="details_header">DETAILS</string>
+    <string name="tags_view">tags</string>
+    <string name="data_view">Data</string>
 
 </resources>

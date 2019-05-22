@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp">
+        <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+                android:id="@+id/image1"/>
+        <ImageView
+                android:layout_width="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="100dp" app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+                android:id="@+id/image2"/>
+        <ImageView
+                android:layout_width="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="100dp" app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+                android:id="@+id/image3"/>
+    </TableRow>
+    <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp">
+        <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+                android:id="@+id/image4"/>
+        <ImageView
+                android:layout_width="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="100dp" app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+                android:id="@+id/image5"/>
+        <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+                android:id="@+id/image6"/>
+    </TableRow>
+
+</TableLayout>

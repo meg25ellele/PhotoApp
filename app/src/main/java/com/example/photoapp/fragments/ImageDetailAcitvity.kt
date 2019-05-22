@@ -10,13 +10,17 @@ class ImageDetailAcitvity : AppCompatActivity() {
 
     companion object {
         lateinit var image: Photo
-        val IMAGE = "IMAGE"
+        lateinit var success: IntArray
+        const val IMAGE = "IMAGE"
+        const val SUCCESS = "SUCCESS"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_detail)
 
         image = intent.getSerializableExtra(IMAGE) as Photo
+        success = intent.getSerializableExtra(SUCCESS) as IntArray
+
 
         val pagerAdapter = ImageFragmentPagerAdapter(supportFragmentManager)
         viewPager.adapter=pagerAdapter

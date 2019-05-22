@@ -8,7 +8,7 @@ class ImageFragmentPagerAdapter(fragmentManager: FragmentManager) : FragmentPage
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> ImageFragment.newInstance()
-            1 -> DetailFragment.newInstance()
+            1 -> Detail_GalleryFragment.newInstance()
             else -> ImageFragment.newInstance()
         }
     }
